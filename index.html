@@ -233,6 +233,63 @@
         opacity: 0.82;
       }
 
+      .mission {
+        position: relative;
+        isolation: isolate;
+        overflow: hidden;
+        padding: clamp(4rem, 8vw, 7rem) 1.25rem;
+        background: #e5e7ea;
+        text-align: center;
+      }
+
+      .mission::before {
+        position: absolute;
+        z-index: -1;
+        inset: -45%;
+        background-image: url("assets/images/mission-mark.png");
+        background-position: center;
+        background-repeat: repeat;
+        background-size: 110px 110px;
+        content: "";
+        filter: brightness(0);
+        opacity: 0.075;
+        transform: rotate(45deg) scale(1.15);
+      }
+
+      .mission__content {
+        max-width: 48rem;
+        margin: 0 auto;
+        padding: clamp(2rem, 5vw, 3.5rem);
+        border: 1px solid rgb(255 255 255 / 0.72);
+        border-radius: 1.5rem;
+        background: rgb(244 247 251 / 0.9);
+        box-shadow: 8px 8px 0 rgb(174 177 183 / 0.35);
+      }
+
+      .mission__eyebrow {
+        margin: 0 0 0.75rem;
+        color: var(--primary-color);
+        font-family: "Nunito", "Arial Rounded MT Bold", Arial, sans-serif;
+        font-size: 0.8rem;
+        font-weight: 800;
+        letter-spacing: 0.18em;
+        text-transform: uppercase;
+      }
+
+      .mission h2 {
+        margin: 0 0 1rem;
+        font-family: "Nunito", "Arial Rounded MT Bold", Arial, sans-serif;
+        font-size: clamp(2rem, 5vw, 3.5rem);
+        line-height: 1.05;
+      }
+
+      .mission__statement {
+        margin: 0;
+        color: #4c4849;
+        font-size: clamp(1.05rem, 2.1vw, 1.35rem);
+        line-height: 1.7;
+      }
+
       @media (max-width: 600px) {
         .wordmark {
           --logo-height: 11vw;
@@ -296,6 +353,17 @@
         </div>
       </section>
     </main>
+    <section class="mission" aria-labelledby="mission-title">
+      <div class="mission__content">
+        <p class="mission__eyebrow">Our mission</p>
+        <h2 id="mission-title">Technology should make life more helpful.</h2>
+        <p class="mission__statement">
+          We build thoughtful software that helps people move forward—making it
+          easier to find decent solutions, discover genuinely helpful products,
+          and choose tools that improve everyday life.
+        </p>
+      </div>
+    </section>
     <footer class="site-footer">
       <div class="container">
         <div class="footer-content">
