@@ -55,12 +55,12 @@
       }
 
       .wordmark {
-        --logo-height: clamp(3.5rem, 12vw, 9rem);
+        --logo-height: clamp(3.5rem, 7vw, 4rem);
         display: flex;
         align-items: baseline;
         justify-content: center;
         width: 100%;
-        max-width: 100%;
+        max-width: 500px;
         margin: 0;
         line-height: 1;
       }
@@ -81,6 +81,10 @@
         margin-left: 0.08em;
         transform: translateY(calc(var(--logo-height) * -0.2));
         white-space: nowrap;
+      }
+
+      .wordmark__spaced-letter {
+        margin-right: 0.07em;
       }
 
       .tagline {
@@ -174,7 +178,10 @@
             alt="Decent"
             width="4836"
             height="1926"
-          /><span class="wordmark__extension">software.llc</span>
+          /><span class="wordmark__extension"
+            >so<span class="wordmark__spaced-letter">f</span
+            ><span class="wordmark__spaced-letter">t</span>ware.llc</span
+          >
         </h1>
         <p class="tagline">Thoughtful software for a more decent web.</p>
       </section>
