@@ -99,14 +99,7 @@
         display: block;
         width: clamp(10rem, 22vw, 17rem);
         height: auto;
-        animation: world-rotation 32s linear infinite;
         filter: drop-shadow(0 1rem 1.25rem rgb(35 31 32 / 0.14));
-      }
-
-      @keyframes world-rotation {
-        to {
-          transform: rotate(360deg);
-        }
       }
 
       .container {
@@ -181,11 +174,6 @@
         }
       }
 
-      @media (prefers-reduced-motion: reduce) {
-        .clay-world {
-          animation: none;
-        }
-      }
     </style>
   </head>
   <body>
