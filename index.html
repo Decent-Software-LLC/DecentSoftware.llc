@@ -210,15 +210,20 @@
       }
 
       .footer-links a {
-        color: #8fbcff;
+        padding: 0.55rem 1rem;
+        border: 1px solid #aeb1b7;
+        border-radius: 999px;
+        background: transparent;
+        color: var(--primary-color);
         font-weight: 600;
         text-decoration: none;
-        transition: color 0.3s, opacity 0.3s;
+        transition: border-color 0.3s, color 0.3s;
       }
 
       .footer-links a:hover,
       .footer-links a:focus-visible {
         color: #c9ddff;
+        border-color: #c9ddff;
       }
 
       .footer-copyright {
@@ -229,6 +234,18 @@
       @media (max-width: 600px) {
         .wordmark {
           --logo-height: 11vw;
+        }
+
+        .footer-links {
+          flex-direction: column;
+          align-items: center;
+          width: 100%;
+          gap: 0;
+        }
+
+        .footer-links a {
+          width: 90%;
+          margin: 2px;
         }
       }
 
