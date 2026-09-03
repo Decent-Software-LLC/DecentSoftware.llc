@@ -26,12 +26,14 @@
       body {
         min-height: 100%;
         margin: 0;
+        overscroll-behavior-y: none;
       }
 
       body {
         display: flex;
         flex-direction: column;
         min-height: 100svh;
+        overflow-x: clip;
         background: var(--background-color);
         color: var(--text-color);
         font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto,
@@ -199,7 +201,7 @@
       .footer-logo-image {
         display: block;
         width: auto;
-        height: 28px;
+        height: 44px;
       }
 
       .footer-links {
