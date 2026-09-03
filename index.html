@@ -143,24 +143,36 @@
         0% {
           z-index: 1;
           left: calc(-50px - 28%);
+          width: 28%;
           transform: translateY(-50%);
+        }
+
+        25% {
+          width: calc(28% - 30px);
         }
 
         49.999% {
           z-index: 1;
           left: calc(100% + 50px);
+          width: 28%;
           transform: translateY(-50%);
         }
 
         50% {
           z-index: 3;
           left: calc(100% + 50px);
+          width: 28%;
           transform: translateY(-50%);
+        }
+
+        75% {
+          width: calc(28% + 30px);
         }
 
         100% {
           z-index: 3;
           left: calc(-50px - 28%);
+          width: 28%;
           transform: translateY(-50%);
         }
       }
