@@ -95,6 +95,20 @@
         line-height: 1.6;
       }
 
+      .clay-world {
+        display: block;
+        width: clamp(10rem, 22vw, 17rem);
+        height: auto;
+        animation: world-rotation 32s linear infinite;
+        filter: drop-shadow(0 1rem 1.25rem rgb(35 31 32 / 0.14));
+      }
+
+      @keyframes world-rotation {
+        to {
+          transform: rotate(360deg);
+        }
+      }
+
       .container {
         width: 100%;
         max-width: 1200px;
@@ -166,6 +180,12 @@
           --logo-height: 11vw;
         }
       }
+
+      @media (prefers-reduced-motion: reduce) {
+        .clay-world {
+          animation: none;
+        }
+      }
     </style>
   </head>
   <body>
@@ -184,6 +204,13 @@
           >
         </h1>
         <p class="tagline">Thoughtful software for a more decent web.</p>
+        <img
+          class="clay-world"
+          src="assets/images/clay-world.png"
+          alt="A claymation planet Earth"
+          width="1254"
+          height="1254"
+        />
       </section>
     </main>
     <footer class="site-footer">
