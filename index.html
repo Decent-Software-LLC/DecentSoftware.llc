@@ -142,22 +142,26 @@
       @keyframes moon-orbit {
         0% {
           z-index: 1;
-          transform: translate(-245%, -50%);
+          left: calc(-50px - 28%);
+          transform: translateY(-50%);
         }
 
         49.999% {
           z-index: 1;
-          transform: translate(145%, -50%);
+          left: calc(100% + 50px);
+          transform: translateY(-50%);
         }
 
         50% {
           z-index: 3;
-          transform: translate(145%, -50%);
+          left: calc(100% + 50px);
+          transform: translateY(-50%);
         }
 
         100% {
           z-index: 3;
-          transform: translate(-245%, -50%);
+          left: calc(-50px - 28%);
+          transform: translateY(-50%);
         }
       }
 
@@ -237,7 +241,8 @@
         .clay-moon {
           z-index: 3;
           animation: none;
-          transform: translate(-245%, -50%);
+          left: calc(-50px - 28%);
+          transform: translateY(-50%);
         }
       }
 
