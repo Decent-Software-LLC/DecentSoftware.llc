@@ -95,11 +95,70 @@
         line-height: 1.6;
       }
 
-      .clay-world {
-        display: block;
+      .world-scene {
+        position: relative;
+        isolation: isolate;
         width: clamp(10rem, 22vw, 17rem);
-        height: auto;
+        aspect-ratio: 1;
+      }
+
+      .world-scene::before {
+        position: absolute;
+        z-index: 0;
+        inset: -30%;
+        border-radius: 50%;
+        background: radial-gradient(
+          circle,
+          rgb(91 164 255 / 0.48) 0%,
+          rgb(120 183 255 / 0.28) 38%,
+          rgb(149 202 255 / 0.13) 56%,
+          transparent 72%
+        );
+        content: "";
+        filter: blur(8px);
+        pointer-events: none;
+      }
+
+      .clay-world {
+        position: relative;
+        z-index: 2;
+        display: block;
+        width: 100%;
+        height: 100%;
         filter: drop-shadow(0 1rem 1.25rem rgb(35 31 32 / 0.14));
+      }
+
+      .clay-moon {
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        z-index: 1;
+        width: 28%;
+        height: auto;
+        animation: moon-orbit 10s ease-in-out infinite;
+        filter: drop-shadow(0 0.35rem 0.45rem rgb(35 31 32 / 0.18));
+      }
+
+      @keyframes moon-orbit {
+        0% {
+          z-index: 1;
+          transform: translate(-245%, -50%);
+        }
+
+        49.999% {
+          z-index: 1;
+          transform: translate(145%, -50%);
+        }
+
+        50% {
+          z-index: 3;
+          transform: translate(145%, -50%);
+        }
+
+        100% {
+          z-index: 3;
+          transform: translate(-245%, -50%);
+        }
       }
 
       .container {
@@ -174,6 +233,14 @@
         }
       }
 
+      @media (prefers-reduced-motion: reduce) {
+        .clay-moon {
+          z-index: 3;
+          animation: none;
+          transform: translate(-245%, -50%);
+        }
+      }
+
     </style>
   </head>
   <body>
@@ -192,13 +259,22 @@
           >
         </h1>
         <p class="tagline">Thoughtful software for a more decent web.</p>
-        <img
-          class="clay-world"
-          src="assets/images/clay-world.png"
-          alt="A claymation planet Earth"
-          width="1254"
-          height="1254"
-        />
+        <div class="world-scene">
+          <img
+            class="clay-world"
+            src="assets/images/clay-world.png"
+            alt="A claymation planet Earth"
+            width="1254"
+            height="1254"
+          />
+          <img
+            class="clay-moon"
+            src="assets/images/clay-moon.png"
+            alt=""
+            width="1254"
+            height="1254"
+          />
+        </div>
       </section>
     </main>
     <footer class="site-footer">
