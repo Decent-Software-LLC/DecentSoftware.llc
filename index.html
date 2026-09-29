@@ -255,10 +255,13 @@
       }
 
       .showcase-card {
+        position: relative;
+        isolation: isolate;
+        overflow: hidden;
         display: flex;
         flex-direction: column;
         align-items: flex-start;
-        min-height: 20rem;
+        min-height: 22rem;
         padding: clamp(1.75rem, 4vw, 2.5rem);
         border: 1px solid #d9dce1;
         border-radius: 1.5rem;
@@ -266,20 +269,24 @@
         box-shadow: 8px 8px 0 rgb(174 177 183 / 0.28);
       }
 
-      .showcase-card::before {
-        width: 3rem;
-        height: 0.4rem;
+      .showcase-card__icon {
+        position: relative;
+        z-index: 2;
+        display: block;
+        width: 4.25rem;
+        height: 4.25rem;
         margin-bottom: auto;
-        border-radius: 999px;
-        background: var(--card-accent, var(--primary-color));
-        content: "";
+        object-fit: contain;
+        object-position: left center;
       }
 
-      .showcase-card--basketball {
-        --card-accent: #e98234;
+      .showcase-card--surf .showcase-card__icon {
+        width: 5.5rem;
       }
 
       .showcase-card h3 {
+        position: relative;
+        z-index: 2;
         margin: 2.5rem 0 0.75rem;
         font-family: "Nunito", "Arial Rounded MT Bold", Arial, sans-serif;
         font-size: clamp(1.65rem, 3.5vw, 2.25rem);
@@ -287,6 +294,9 @@
       }
 
       .showcase-card p {
+        position: relative;
+        z-index: 2;
+        max-width: 70%;
         margin: 0 0 1.75rem;
         color: #4c4849;
         font-size: 1.05rem;
@@ -294,6 +304,8 @@
       }
 
       .showcase-card__button {
+        position: relative;
+        z-index: 2;
         display: inline-flex;
         align-items: center;
         justify-content: center;
@@ -312,6 +324,42 @@
       .showcase-card__button:focus-visible {
         background: var(--primary-color);
         transform: translateY(-2px);
+      }
+
+      .showcase-card__art {
+        position: absolute;
+        z-index: 1;
+        right: -5%;
+        bottom: -5%;
+        display: block;
+        width: 64%;
+        height: 62%;
+        object-fit: contain;
+        object-position: right bottom;
+        opacity: 0.72;
+        -webkit-mask-image: linear-gradient(
+          135deg,
+          transparent 0%,
+          transparent 20%,
+          #000 68%
+        );
+        mask-image: linear-gradient(
+          135deg,
+          transparent 0%,
+          transparent 20%,
+          #000 68%
+        );
+        pointer-events: none;
+      }
+
+      .showcase-card--basketball .showcase-card__art {
+        right: 0;
+        bottom: 0;
+        width: 68%;
+        height: 56%;
+        object-fit: cover;
+        object-position: center;
+        opacity: 0.42;
       }
 
       .mission {
@@ -433,7 +481,14 @@
         <p class="showcase__eyebrow">Showcase</p>
         <h2 id="showcase-title">A few decent things.</h2>
         <div class="showcase__grid">
-          <article class="showcase-card">
+          <article class="showcase-card showcase-card--surf">
+            <img
+              class="showcase-card__icon"
+              src="assets/images/showcase-surf-icon.png"
+              alt=""
+              width="600"
+              height="400"
+            />
             <h3>decent.surf</h3>
             <p>
               A thoughtful destination for exploring the web and discovering
@@ -442,8 +497,22 @@
             <a class="showcase-card__button" href="https://decent.surf/">
               Visit decent.surf
             </a>
+            <img
+              class="showcase-card__art"
+              src="assets/images/showcase-surf-girl.png"
+              alt=""
+              width="600"
+              height="600"
+            />
           </article>
           <article class="showcase-card showcase-card--basketball">
+            <img
+              class="showcase-card__icon"
+              src="assets/images/showcase-basketball-icon.png"
+              alt=""
+              width="256"
+              height="256"
+            />
             <h3>decent.coach/basketball</h3>
             <p>
               Practical basketball guidance designed to help players and
@@ -455,6 +524,13 @@
             >
               Explore basketball
             </a>
+            <img
+              class="showcase-card__art"
+              src="assets/images/showcase-basketball-drill.jpg"
+              alt=""
+              width="1280"
+              height="720"
+            />
           </article>
         </div>
       </div>
