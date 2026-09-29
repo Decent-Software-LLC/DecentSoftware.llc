@@ -301,7 +301,22 @@
         line-height: 1.1;
       }
 
-      .showcase-card p {
+      .showcase-card__kicker {
+        margin: 0 0 0.3rem;
+        color: var(--primary-color);
+        font-family: "Nunito", "Arial Rounded MT Bold", Arial, sans-serif;
+        font-size: 0.72rem;
+        font-weight: 800;
+        letter-spacing: 0.14em;
+        line-height: 1;
+        text-transform: uppercase;
+      }
+
+      .showcase-card--basketball .showcase-card__kicker {
+        color: #d66f25;
+      }
+
+      .showcase-card__description {
         position: relative;
         z-index: 2;
         max-width: 70%;
@@ -520,9 +535,12 @@
                 width="600"
                 height="400"
               />
-              <h3>decent.surf</h3>
+              <div>
+                <p class="showcase-card__kicker">decent.surf</p>
+                <h3>Wave Conditions</h3>
+              </div>
             </div>
-            <p>
+            <p class="showcase-card__description">
               Get latest and forecasted wave conditions for 100 US surf spots.
             </p>
             <a class="showcase-card__button" href="https://decent.surf/">
@@ -545,9 +563,12 @@
                 width="256"
                 height="256"
               />
-              <h3>decent.coach/basketball</h3>
+              <div>
+                <p class="showcase-card__kicker">decent.coach</p>
+                <h3>Basketball Drills</h3>
+              </div>
             </div>
-            <p>
+            <p class="showcase-card__description">
               Practical basketball guidance designed to help players and
               coaches learn, improve, and enjoy the game.
             </p>
