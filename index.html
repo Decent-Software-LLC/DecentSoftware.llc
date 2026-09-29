@@ -273,9 +273,9 @@
         position: relative;
         z-index: 2;
         display: block;
+        flex: 0 0 auto;
         width: 4.25rem;
         height: 4.25rem;
-        margin-bottom: auto;
         object-fit: contain;
         object-position: left center;
       }
@@ -285,10 +285,18 @@
         height: 5rem;
       }
 
-      .showcase-card h3 {
+      .showcase-card__header {
         position: relative;
         z-index: 2;
-        margin: 2.5rem 0 0.75rem;
+        display: flex;
+        align-items: center;
+        width: 100%;
+        margin-bottom: auto;
+        gap: 1rem;
+      }
+
+      .showcase-card h3 {
+        margin: 0;
         font-family: "Nunito", "Arial Rounded MT Bold", Arial, sans-serif;
         font-size: clamp(1.65rem, 3.5vw, 2.25rem);
         line-height: 1.1;
@@ -298,7 +306,7 @@
         position: relative;
         z-index: 2;
         max-width: 70%;
-        margin: 0 0 1.75rem;
+        margin: 2.5rem 0 1.75rem;
         color: #4c4849;
         font-size: 1.05rem;
         line-height: 1.65;
@@ -504,20 +512,21 @@
         <h2 id="showcase-title">A few decent things.</h2>
         <div class="showcase__grid">
           <article class="showcase-card showcase-card--surf">
-            <img
-              class="showcase-card__icon"
-              src="assets/images/showcase-surf-icon.png"
-              alt=""
-              width="600"
-              height="400"
-            />
-            <h3>decent.surf</h3>
+            <div class="showcase-card__header">
+              <img
+                class="showcase-card__icon"
+                src="assets/images/showcase-surf-icon.png"
+                alt=""
+                width="600"
+                height="400"
+              />
+              <h3>decent.surf</h3>
+            </div>
             <p>
-              A thoughtful destination for exploring the web and discovering
-              something useful along the way.
+              Get latest and forecasted wave conditions for 100 US surf spots.
             </p>
             <a class="showcase-card__button" href="https://decent.surf/">
-              Visit decent.surf
+              Get Surf Conditions
             </a>
             <img
               class="showcase-card__art"
@@ -528,14 +537,16 @@
             />
           </article>
           <article class="showcase-card showcase-card--basketball">
-            <img
-              class="showcase-card__icon"
-              src="assets/images/showcase-basketball-icon.png"
-              alt=""
-              width="256"
-              height="256"
-            />
-            <h3>decent.coach/basketball</h3>
+            <div class="showcase-card__header">
+              <img
+                class="showcase-card__icon"
+                src="assets/images/showcase-basketball-icon.png"
+                alt=""
+                width="256"
+                height="256"
+              />
+              <h3>decent.coach/basketball</h3>
+            </div>
             <p>
               Practical basketball guidance designed to help players and
               coaches learn, improve, and enjoy the game.
@@ -544,7 +555,7 @@
               class="showcase-card__button"
               href="https://decent.coach/basketball/"
             >
-              Explore basketball
+              Learn Basketball Drills
             </a>
             <img
               class="showcase-card__art"
