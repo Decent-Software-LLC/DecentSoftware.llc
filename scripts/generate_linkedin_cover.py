@@ -50,7 +50,6 @@ def main() -> None:
 
     rounded_font = Path("/System/Library/Fonts/Supplemental/Arial Rounded Bold.ttf")
     title_font = ImageFont.truetype(str(rounded_font), 142)
-    tagline_font = ImageFont.truetype(str(rounded_font), 58)
 
     title_x = logo_x + logo.width + 32
     title_y = 190
@@ -58,12 +57,18 @@ def main() -> None:
     draw.text((title_x, title_y), "software.llc", font=title_font, fill=(*BLUE, 255), stroke_width=1)
 
     tagline = "Thoughtful software for a more decent web."
-    tagline_x = 760
+    title_box = draw.textbbox((title_x, title_y), "software.llc", font=title_font, stroke_width=1)
+    lockup_width = title_box[2] - logo_x
+    tagline_size = 58
+    tagline_font = ImageFont.truetype(str(rounded_font), tagline_size)
+    while draw.textlength(tagline, font=tagline_font) < lockup_width:
+        tagline_size += 1
+        tagline_font = ImageFont.truetype(str(rounded_font), tagline_size)
+    tagline_size -= 1
+    tagline_font = ImageFont.truetype(str(rounded_font), tagline_size)
+    tagline_x = logo_x
     tagline_y = 465
     draw.text((tagline_x, tagline_y), tagline, font=tagline_font, fill=(244, 247, 251, 245))
-
-    tagline_box = draw.textbbox((tagline_x, tagline_y), tagline, font=tagline_font)
-    draw.rounded_rectangle((tagline_x, 570, tagline_box[2], 578), radius=4, fill=(*BLUE, 220))
 
     rgb = Image.new("RGB", canvas.size, BACKGROUND)
     rgb.paste(canvas, mask=canvas.getchannel("A"))
