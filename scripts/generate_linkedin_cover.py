@@ -1,7 +1,7 @@
 from pathlib import Path
 import random
 
-from PIL import Image, ImageDraw, ImageFont, ImageOps
+from PIL import Image, ImageDraw, ImageFont
 
 
 ROOT = Path(__file__).resolve().parents[1]
@@ -19,20 +19,9 @@ def contain(path: Path, max_width: int, max_height: int) -> Image.Image:
     return image
 
 
-def add_glow(canvas: Image.Image, center: tuple[int, int], size: tuple[int, int], color: tuple[int, int, int], opacity: int) -> None:
-    gradient = ImageOps.invert(Image.radial_gradient("L")).resize(size, Image.Resampling.LANCZOS)
-    gradient = gradient.point(lambda value: value * opacity // 255)
-    glow = Image.new("RGBA", size, (*color, 0))
-    glow.putalpha(gradient)
-    canvas.alpha_composite(glow, (center[0] - size[0] // 2, center[1] - size[1] // 2))
-
-
 def main() -> None:
     random.seed(2026)
     canvas = Image.new("RGBA", (WIDTH, HEIGHT), (*BACKGROUND, 255))
-
-    add_glow(canvas, (950, 250), (1800, 1000), BLUE, 76)
-    add_glow(canvas, (3670, 360), (1300, 950), (91, 164, 255), 58)
 
     draw = ImageDraw.Draw(canvas)
     for _ in range(280):
@@ -42,6 +31,10 @@ def main() -> None:
         alpha = random.randrange(85, 225)
         color = (255, 255, 255, alpha) if random.random() > 0.28 else (143, 188, 255, alpha)
         draw.ellipse((x - radius, y - radius, x + radius, y + radius), fill=color)
+
+    nebula = contain(ASSETS / "linkedin-nebula.png", 1650, 760)
+    nebula.putalpha(nebula.getchannel("A").point(lambda value: value * 150 // 255))
+    canvas.alpha_composite(nebula, (WIDTH - nebula.width - 130, -220))
 
     earth = contain(ASSETS / "clay-world.png", 900, 900)
     canvas.alpha_composite(earth, (WIDTH - 730, -95))
@@ -65,9 +58,12 @@ def main() -> None:
     draw.text((title_x, title_y), "software.llc", font=title_font, fill=(*BLUE, 255), stroke_width=1)
 
     tagline = "Thoughtful software for a more decent web."
-    draw.text((760, 465), tagline, font=tagline_font, fill=(244, 247, 251, 245))
+    tagline_x = 760
+    tagline_y = 465
+    draw.text((tagline_x, tagline_y), tagline, font=tagline_font, fill=(244, 247, 251, 245))
 
-    draw.rounded_rectangle((650, 570, 2360, 578), radius=4, fill=(*BLUE, 220))
+    tagline_box = draw.textbbox((tagline_x, tagline_y), tagline, font=tagline_font)
+    draw.rounded_rectangle((tagline_x, 570, tagline_box[2], 578), radius=4, fill=(*BLUE, 220))
 
     rgb = Image.new("RGB", canvas.size, BACKGROUND)
     rgb.paste(canvas, mask=canvas.getchannel("A"))
