@@ -32,9 +32,9 @@ def main() -> None:
         color = (255, 255, 255, alpha) if random.random() > 0.28 else (143, 188, 255, alpha)
         draw.ellipse((x - radius, y - radius, x + radius, y + radius), fill=color)
 
-    nebula = contain(ASSETS / "linkedin-nebula.png", 1650, 760)
-    nebula.putalpha(nebula.getchannel("A").point(lambda value: value * 150 // 255))
-    canvas.alpha_composite(nebula, (WIDTH - nebula.width - 130, -220))
+    nebula = contain(ASSETS / "linkedin-nebula.png", 1800, 820)
+    nebula.putalpha(nebula.getchannel("A").point(lambda value: value * 105 // 255))
+    canvas.alpha_composite(nebula, (-120, -270))
 
     earth = contain(ASSETS / "clay-world.png", 900, 900)
     canvas.alpha_composite(earth, (WIDTH - 730, -95))
