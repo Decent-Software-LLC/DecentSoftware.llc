@@ -219,19 +219,21 @@
       }
 
       .showcase {
+        position: relative;
+        isolation: isolate;
+        overflow: hidden;
         padding: clamp(4rem, 8vw, 7rem) 1.25rem;
         background-color: #07090e;
-        background-image:
-          radial-gradient(circle at 18% 18%, rgb(59 134 246 / 0.2), transparent 30%),
-          radial-gradient(circle, rgb(255 255 255 / 0.72) 1px, transparent 1.5px),
-          radial-gradient(circle, rgb(143 188 255 / 0.48) 1px, transparent 1.6px),
-          radial-gradient(circle, rgb(255 255 255 / 0.28) 0.8px, transparent 1.4px);
-        background-position: center, 0 0, 38px 54px, 18px 24px;
-        background-repeat: no-repeat, repeat, repeat, repeat;
-        background-size: 100% 100%, 96px 96px, 148px 148px, 62px 62px;
+        background-image: radial-gradient(
+          circle at 18% 18%,
+          rgb(59 134 246 / 0.2),
+          transparent 30%
+        );
       }
 
       .showcase__content {
+        position: relative;
+        z-index: 2;
         width: 100%;
         max-width: 1000px;
         margin: 0 auto;
@@ -255,6 +257,74 @@
         font-size: clamp(2rem, 5vw, 3.5rem);
         line-height: 1.05;
         text-align: center;
+      }
+
+      .showcase__stars {
+        position: absolute;
+        z-index: 0;
+        inset: 0;
+        overflow: hidden;
+        pointer-events: none;
+      }
+
+      .showcase__star {
+        position: absolute;
+        width: var(--star-size);
+        height: var(--star-size);
+        border-radius: 50%;
+        background: rgb(255 255 255 / var(--star-opacity));
+        box-shadow: 0 0 calc(var(--star-size) * 3) rgb(143 188 255 / 0.5);
+        animation: star-twinkle var(--twinkle-speed) ease-in-out infinite alternate;
+      }
+
+      .showcase__shuttle {
+        position: absolute;
+        z-index: 1;
+        top: 18%;
+        left: 0;
+        display: block;
+        width: clamp(11rem, 25vw, 23rem);
+        height: auto;
+        opacity: 0;
+        filter: drop-shadow(0 0.8rem 1rem rgb(0 0 0 / 0.5));
+        pointer-events: none;
+        animation: shuttle-flyby 30s linear infinite;
+      }
+
+      @keyframes star-twinkle {
+        from {
+          transform: scale(0.75);
+          opacity: 0.45;
+        }
+
+        to {
+          transform: scale(1.2);
+          opacity: 1;
+        }
+      }
+
+      @keyframes shuttle-flyby {
+        0% {
+          opacity: 0;
+          transform: translateX(calc(-100% - 3rem)) translateY(1.5rem) rotate(-4deg);
+        }
+
+        2% {
+          opacity: 0.9;
+        }
+
+        38% {
+          opacity: 0.9;
+          transform: translateX(calc(100vw + 100% + 3rem)) translateY(-1.5rem)
+            rotate(-4deg);
+        }
+
+        40%,
+        100% {
+          opacity: 0;
+          transform: translateX(calc(100vw + 100% + 3rem)) translateY(-1.5rem)
+            rotate(-4deg);
+        }
       }
 
       .showcase__grid {
@@ -501,6 +571,14 @@
           left: calc(-50px - 28%);
           transform: translateY(-50%);
         }
+
+        .showcase__star {
+          animation: none;
+        }
+
+        .showcase__shuttle {
+          display: none;
+        }
       }
 
     </style>
@@ -540,6 +618,15 @@
       </section>
     </main>
     <section class="showcase" aria-labelledby="showcase-title">
+      <div class="showcase__stars" aria-hidden="true"></div>
+      <img
+        class="showcase__shuttle"
+        src="assets/images/clay-shuttle-columbia.png"
+        alt=""
+        width="1774"
+        height="887"
+        aria-hidden="true"
+      />
       <div class="showcase__content">
         <p class="showcase__eyebrow">Showcase</p>
         <h2 id="showcase-title">A few decent things.</h2>
@@ -635,5 +722,28 @@
         </div>
       </div>
     </footer>
+    <script>
+      const starField = document.querySelector(".showcase__stars");
+
+      if (starField) {
+        const starCount = Math.min(150, Math.max(70, Math.round(window.innerWidth / 9)));
+        const stars = document.createDocumentFragment();
+
+        for (let index = 0; index < starCount; index += 1) {
+          const star = document.createElement("span");
+          const size = (Math.random() * 2.2 + 0.7).toFixed(2);
+          star.className = "showcase__star";
+          star.style.left = `${(Math.random() * 100).toFixed(2)}%`;
+          star.style.top = `${(Math.random() * 100).toFixed(2)}%`;
+          star.style.setProperty("--star-size", `${size}px`);
+          star.style.setProperty("--star-opacity", (Math.random() * 0.65 + 0.25).toFixed(2));
+          star.style.setProperty("--twinkle-speed", `${(Math.random() * 3 + 2).toFixed(2)}s`);
+          star.style.animationDelay = `${(Math.random() * -5).toFixed(2)}s`;
+          stars.appendChild(star);
+        }
+
+        starField.appendChild(stars);
+      }
+    </script>
   </body>
 </html>
