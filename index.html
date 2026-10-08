@@ -220,7 +220,15 @@
 
       .showcase {
         padding: clamp(4rem, 8vw, 7rem) 1.25rem;
-        background: #ffffff;
+        background-color: #07090e;
+        background-image:
+          radial-gradient(circle at 18% 18%, rgb(59 134 246 / 0.2), transparent 30%),
+          radial-gradient(circle, rgb(255 255 255 / 0.72) 1px, transparent 1.5px),
+          radial-gradient(circle, rgb(143 188 255 / 0.48) 1px, transparent 1.6px),
+          radial-gradient(circle, rgb(255 255 255 / 0.28) 0.8px, transparent 1.4px);
+        background-position: center, 0 0, 38px 54px, 18px 24px;
+        background-repeat: no-repeat, repeat, repeat, repeat;
+        background-size: 100% 100%, 96px 96px, 148px 148px, 62px 62px;
       }
 
       .showcase__content {
@@ -242,6 +250,7 @@
 
       .showcase h2 {
         margin: 0 0 clamp(2rem, 5vw, 3.5rem);
+        color: #ffffff;
         font-family: "Nunito", "Arial Rounded MT Bold", Arial, sans-serif;
         font-size: clamp(2rem, 5vw, 3.5rem);
         line-height: 1.05;
