@@ -280,7 +280,7 @@
       .showcase__shuttle {
         position: absolute;
         z-index: 1;
-        top: 18%;
+        top: 0;
         left: 0;
         display: block;
         width: clamp(11rem, 25vw, 23rem);
@@ -306,7 +306,7 @@
       @keyframes shuttle-flyby {
         0% {
           opacity: 0;
-          transform: translateX(calc(-100% - 3rem)) translateY(1.5rem) rotate(-4deg);
+          transform: translateX(calc(-100% - 3rem)) translateY(-28%) rotate(4deg);
         }
 
         2% {
@@ -315,15 +315,15 @@
 
         38% {
           opacity: 0.9;
-          transform: translateX(calc(100vw + 100% + 3rem)) translateY(-1.5rem)
-            rotate(-4deg);
+          transform: translateX(calc(100vw + 100% + 3rem)) translateY(5rem)
+            rotate(4deg);
         }
 
         40%,
         100% {
           opacity: 0;
-          transform: translateX(calc(100vw + 100% + 3rem)) translateY(-1.5rem)
-            rotate(-4deg);
+          transform: translateX(calc(100vw + 100% + 3rem)) translateY(5rem)
+            rotate(4deg);
         }
       }
 
