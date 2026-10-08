@@ -44,12 +44,14 @@ def main() -> None:
     canvas.alpha_composite(shuttle, (2920, 58))
 
     logo = contain(ASSETS / "decent.png", 720, 285)
-    logo_x = 650
-    logo_y = 115
-    canvas.alpha_composite(logo, (logo_x, logo_y))
-
     rounded_font = Path("/System/Library/Fonts/Supplemental/Arial Rounded Bold.ttf")
     title_font = ImageFont.truetype(str(rounded_font), 142)
+    title_width = draw.textbbox((0, 0), "software.llc", font=title_font, stroke_width=1)[2]
+    lockup_width = logo.width + 32 + title_width
+
+    logo_x = (WIDTH - lockup_width) // 2
+    logo_y = 115
+    canvas.alpha_composite(logo, (logo_x, logo_y))
 
     title_x = logo_x + logo.width + 32
     title_y = 190
@@ -57,8 +59,6 @@ def main() -> None:
     draw.text((title_x, title_y), "software.llc", font=title_font, fill=(*BLUE, 255), stroke_width=1)
 
     tagline = "Thoughtful software for a more decent web."
-    title_box = draw.textbbox((title_x, title_y), "software.llc", font=title_font, stroke_width=1)
-    lockup_width = title_box[2] - logo_x
     tagline_size = 58
     tagline_font = ImageFont.truetype(str(rounded_font), tagline_size)
     while draw.textlength(tagline, font=tagline_font) < lockup_width:
