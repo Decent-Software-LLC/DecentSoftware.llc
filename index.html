@@ -235,7 +235,7 @@
         position: relative;
         z-index: 2;
         width: 100%;
-        max-width: 1000px;
+        max-width: 1200px;
         margin: 0 auto;
       }
 
@@ -329,7 +329,7 @@
 
       .showcase__grid {
         display: grid;
-        grid-template-columns: repeat(2, minmax(0, 1fr));
+        grid-template-columns: repeat(6, minmax(0, 1fr));
         gap: clamp(1.25rem, 3vw, 2rem);
       }
 
@@ -346,6 +346,11 @@
         border-radius: 1.5rem;
         background: #f4f7fb;
         box-shadow: 8px 8px 0 rgb(174 177 183 / 0.28);
+        grid-column: span 3;
+      }
+
+      .showcase-card:nth-child(n + 3) {
+        grid-column: span 2;
       }
 
       .showcase-card__icon {
@@ -402,6 +407,12 @@
 
       .showcase-card--basketball .showcase-card__kicker {
         color: #d66f25;
+      }
+
+      .showcase-card--systemprompt .showcase-card__kicker,
+      .showcase-card--forexample .showcase-card__kicker,
+      .showcase-card--aiml .showcase-card__kicker {
+        color: #2868c7;
       }
 
       .showcase-card__description {
@@ -495,6 +506,30 @@
         transform: scaleX(-1);
       }
 
+      .showcase-card--systemprompt .showcase-card__art {
+        right: -8%;
+        bottom: -10%;
+        width: 66%;
+        height: 66%;
+        opacity: 0.58;
+      }
+
+      .showcase-card--forexample .showcase-card__art {
+        right: -13%;
+        bottom: -8%;
+        width: 76%;
+        height: 68%;
+        opacity: 0.58;
+      }
+
+      .showcase-card--aiml .showcase-card__art {
+        right: -10%;
+        bottom: -9%;
+        width: 70%;
+        height: 70%;
+        opacity: 0.62;
+      }
+
       .mission {
         position: relative;
         isolation: isolate;
@@ -562,6 +597,18 @@
           grid-template-columns: 1fr;
         }
 
+        .showcase-card,
+        .showcase-card:nth-child(n + 3) {
+          grid-column: auto;
+        }
+
+      }
+
+      @media (min-width: 601px) and (max-width: 900px) {
+        .showcase-card,
+        .showcase-card:nth-child(n + 3) {
+          grid-column: span 3;
+        }
       }
 
       @media (prefers-reduced-motion: reduce) {
@@ -689,6 +736,72 @@
               alt=""
               width="1280"
               height="720"
+            />
+          </article>
+          <article class="showcase-card showcase-card--systemprompt">
+            <div class="showcase-card__header">
+              <div>
+                <p class="showcase-card__kicker">SystemPrompt.me</p>
+                <h3>AI Personality Test</h3>
+              </div>
+            </div>
+            <p class="showcase-card__description">
+              Discover the AI personality that best matches how you think,
+              work, and collaborate.
+            </p>
+            <a class="showcase-card__button" href="https://systemprompt.me/">
+              Take the Test
+            </a>
+            <img
+              class="showcase-card__art"
+              src="assets/images/showcase-systemprompt-brain.png"
+              alt=""
+              width="900"
+              height="883"
+            />
+          </article>
+          <article class="showcase-card showcase-card--forexample">
+            <div class="showcase-card__header">
+              <div>
+                <p class="showcase-card__kicker">Forexample.ai</p>
+                <h3>AI on AI Blog</h3>
+              </div>
+            </div>
+            <p class="showcase-card__description">
+              A blog where AI examines AI—its tools, ideas, experiments, and
+              evolving impact.
+            </p>
+            <a class="showcase-card__button" href="http://forexample.ai/">
+              Read the Blog
+            </a>
+            <img
+              class="showcase-card__art"
+              src="assets/images/showcase-forexample-robot.png"
+              alt=""
+              width="900"
+              height="746"
+            />
+          </article>
+          <article class="showcase-card showcase-card--aiml">
+            <div class="showcase-card__header">
+              <div>
+                <p class="showcase-card__kicker">aiml.training</p>
+                <h3>Building an AI</h3>
+              </div>
+            </div>
+            <p class="showcase-card__description">
+              Follow a hands-on journey through the ideas, tools, and lessons
+              behind building an AI.
+            </p>
+            <a class="showcase-card__button" href="https://aiml.training/">
+              Start Learning
+            </a>
+            <img
+              class="showcase-card__art"
+              src="assets/images/showcase-aiml-robot.png"
+              alt=""
+              width="900"
+              height="839"
             />
           </article>
         </div>
