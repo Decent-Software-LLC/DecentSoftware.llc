@@ -1,0 +1,25 @@
+{
+  "$schema": "node_modules/wrangler/config-schema.json",
+  "name": "decentsoftware-contact",
+  "main": "worker.js",
+  "compatibility_date": "2026-10-23",
+  "send_email": [
+    {
+      "name": "EMAIL",
+      "allowed_destination_addresses": [
+        "donniegardner3rd@gmail.com",
+        "kevin.d.jones@gmail.com"
+      ]
+    }
+  ],
+  "ratelimits": [
+    {
+      "name": "CONTACT_LIMITER",
+      "namespace_id": "32001",
+      "simple": {
+        "limit": 5,
+        "period": 60
+      }
+    }
+  ]
+}
